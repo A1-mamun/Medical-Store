@@ -78,7 +78,7 @@ const Inventory = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-10">
             <h2 className="text-3xl text-[#000000] font-semibold">Inventory</h2>
-            <label className="input input-md bg-[#E4E4E4] flex items-center gap-2 w-full max-w-sm">
+            <label className="input input-md bg-[#E4E4E4] flex items-center gap-2 w-[350px]">
               <RiSearchLine size={20} className="text-[#7B7B7B]" />
               <input
                 type="text"
@@ -98,10 +98,10 @@ const Inventory = () => {
         </div>
       </div>
       <div className="w-full h-[calc(100vh-188px)] bg-[#DDDDDD] p-7">
-        <div className="overflow-x-auto bg-white rounded-md h-full">
+        <div className="overflow-x-auto bg-white rounded-lg h-full">
           <table className="table">
             {/* head */}
-            <thead className="h-14">
+            <thead className="h-14 bg-gray-200">
               <tr>
                 <th>Name</th>
                 <th>Unit</th>
