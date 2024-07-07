@@ -69,7 +69,7 @@ const Inventory = () => {
 
   // get medicine data
   useEffect(() => {
-    fetch("/public/data/medicines.json")
+    fetch("/data/medicines.json")
       .then((res) => res.json())
       .then((data) => setMedicines(data));
   }, []);

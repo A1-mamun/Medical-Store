@@ -42,7 +42,7 @@ const CreateBillRow = ({ medicine, total, setTotal, setReceiveBtnValid }) => {
           >
             <FiMinus />
           </button>
-          <label className="input input-bordered flex items-center mt-1 max-w-[150px]">
+          <label className="input input-bordered flex items-center mt-1 w-full max-w-[200px]">
             <input
               value={buyUnit}
               min="0"

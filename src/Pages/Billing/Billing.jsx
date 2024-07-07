@@ -11,7 +11,7 @@ const Billing = () => {
 
   // get bill data
   useEffect(() => {
-    fetch("/public/data/bills.json")
+    fetch("/data/bills.json")
       .then((res) => res.json())
       .then((data) => setBills(data));
   }, []);

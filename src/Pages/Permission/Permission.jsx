@@ -10,7 +10,7 @@ const Permission = () => {
 
   // get users data
   useEffect(() => {
-    fetch("/public/data/users.json")
+    fetch("/data/users.json")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, []);
