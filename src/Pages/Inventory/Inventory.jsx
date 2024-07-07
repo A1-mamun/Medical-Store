@@ -1,11 +1,27 @@
 import { useState } from "react";
+import { FaSearchPlus } from "react-icons/fa";
 import { FiEdit3 } from "react-icons/fi";
-import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
+import {
+  IoMdArrowDropleft,
+  IoMdArrowDropright,
+  IoMdCloseCircleOutline,
+} from "react-icons/io";
+import { MdOutlineDeleteForever } from "react-icons/md";
 import { RiSearchLine } from "react-icons/ri";
 import { TfiEye } from "react-icons/tfi";
+import { TiArrowMaximise } from "react-icons/ti";
+import Modal from "react-modal";
 
 const Inventory = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   const medicines = [
     { id: 1, name: "Doxycycline 1", unit: 20, price: 7.5, sold: 245 },
@@ -91,7 +107,7 @@ const Inventory = () => {
             <button className="btn bg-white btn-outline text-[#1A1D1F] outline-[#EFEFEF]">
               Export Report
             </button>
-            <button className="btn text-white bg-[#004FE8]">
+            <button onClick={openModal} className="btn text-white bg-[#004FE8]">
               Add New Items
             </button>
           </div>
@@ -158,6 +174,181 @@ const Inventory = () => {
           </div>
         </div>
       </div>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={closeModal}
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border border-gray-400 rounded-xl mt-12 md:mt-0 bg-white"
+      >
+        <div className="w-[600px] h-[700px] p-5">
+          <div className="flex justify-between items-center mb-9">
+            <h3 className="text-xl font-medium">Add new items</h3>
+            <div className="flex gap-3">
+              <button className="btn btn-sm">
+                <TiArrowMaximise size={30} />
+              </button>
+              <button onClick={closeModal} className="btn btn-sm">
+                <IoMdCloseCircleOutline size={30} />
+              </button>
+            </div>
+          </div>
+          <div className=" border-b">
+            <label className="input input-md bg-[#E4E4E4] flex items-center gap-2 w-full mb-5">
+              <FaSearchPlus size={20} className="text-black" />
+              <input
+                type="text"
+                className="grow text-black"
+                placeholder="Search and add"
+              />
+            </label>
+          </div>
+          <div className="overflow-x-auto bg-white h-[calc(100%-140px)] rounded-lg ">
+            <table className="table">
+              <tbody>
+                <tr>
+                  <div className="border-b py-5">
+                    <h3 className="text-lg mb-2">Astmocin</h3>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="number"
+                        placeholder="Unit"
+                        className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
+                      />
+                      <input
+                        type="number"
+                        placeholder="Per unit price"
+                        className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
+                      />
+                      <button className="btn btn-sm">
+                        <MdOutlineDeleteForever size={30} />
+                      </button>
+                    </div>
+                  </div>
+                </tr>
+                <tr>
+                  <div className="border-b py-5">
+                    <h3 className="text-lg mb-2">Astmocin</h3>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="number"
+                        placeholder="Unit"
+                        className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
+                      />
+                      <input
+                        type="number"
+                        placeholder="Per unit price"
+                        className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
+                      />
+                      <button className="btn btn-sm">
+                        <MdOutlineDeleteForever size={30} />
+                      </button>
+                    </div>
+                  </div>
+                </tr>
+                <tr>
+                  <div className="border-b py-5">
+                    <h3 className="text-lg mb-2">Astmocin</h3>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="number"
+                        placeholder="Unit"
+                        className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
+                      />
+                      <input
+                        type="number"
+                        placeholder="Per unit price"
+                        className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
+                      />
+                      <button className="btn btn-sm">
+                        <MdOutlineDeleteForever size={30} />
+                      </button>
+                    </div>
+                  </div>
+                </tr>
+                <tr>
+                  <div className="border-b py-5">
+                    <h3 className="text-lg mb-2">Astmocin</h3>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="number"
+                        placeholder="Unit"
+                        className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
+                      />
+                      <input
+                        type="number"
+                        placeholder="Per unit price"
+                        className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
+                      />
+                      <button className="btn btn-sm">
+                        <MdOutlineDeleteForever size={30} />
+                      </button>
+                    </div>
+                  </div>
+                </tr>
+                <tr>
+                  <div className="border-b py-5">
+                    <h3 className="text-lg mb-2">Astmocin</h3>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="number"
+                        placeholder="Unit"
+                        className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
+                      />
+                      <input
+                        type="number"
+                        placeholder="Per unit price"
+                        className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
+                      />
+                      <button className="btn btn-sm">
+                        <MdOutlineDeleteForever size={30} />
+                      </button>
+                    </div>
+                  </div>
+                </tr>
+                <tr>
+                  <div className="border-b py-5">
+                    <h3 className="text-lg mb-2">Astmocin</h3>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="number"
+                        placeholder="Unit"
+                        className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
+                      />
+                      <input
+                        type="number"
+                        placeholder="Per unit price"
+                        className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
+                      />
+                      <button className="btn btn-sm">
+                        <MdOutlineDeleteForever size={30} />
+                      </button>
+                    </div>
+                  </div>
+                </tr>
+                <tr>
+                  <div className="border-b py-5">
+                    <h3 className="text-lg mb-2">Astmocin</h3>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="number"
+                        placeholder="Unit"
+                        className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
+                      />
+                      <input
+                        type="number"
+                        placeholder="Per unit price"
+                        className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
+                      />
+                      <button className="btn btn-sm">
+                        <MdOutlineDeleteForever size={30} />
+                      </button>
+                    </div>
+                  </div>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

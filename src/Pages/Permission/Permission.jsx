@@ -41,6 +41,11 @@ const Permission = () => {
     setIsOpen(false);
   };
 
+  const handleRole = (role) => {
+    console.log(role);
+    closeModal();
+  };
+
   return (
     <div className="w-full h-[calc(100vh-100px)] bg-[#DDDDDD] p-7">
       <div className="overflow-x-auto bg-white rounded-lg h-full">
@@ -102,13 +107,22 @@ const Permission = () => {
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border border-gray-400 rounded-xl mt-12 md:mt-0 bg-gray-100 z-50"
       >
         <div className="h-16 w-72  flex items-center justify-center gap-5">
-          <button className="btn btn-sm text-white hover:text-black bg-[#004FE8]">
+          <button
+            onClick={() => handleRole("Admin")}
+            className="btn btn-sm text-white hover:text-black bg-[#004FE8]"
+          >
             Admin
           </button>
-          <button className="btn btn-sm text-white hover:text-black bg-[#9747FF]">
+          <button
+            onClick={() => handleRole("Edit")}
+            className="btn btn-sm text-white hover:text-black bg-[#9747FF]"
+          >
             Edit
           </button>
-          <button className="btn btn-sm text-white hover:text-black bg-[#3EAA18]">
+          <button
+            onClick={() => handleRole("Viewer")}
+            className="btn btn-sm text-white hover:text-black bg-[#3EAA18]"
+          >
             Viewer
           </button>
         </div>

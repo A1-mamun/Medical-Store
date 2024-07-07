@@ -6,10 +6,10 @@ import { BsArrowLeftCircle } from "react-icons/bs";
 
 const CreateBill = () => {
   const [total, setTotal] = useState(0);
-  const [grandTotal, setGrandTotal] = useState();
+  const [grandTotal, setGrandTotal] = useState(0);
   const [discountPercent, setDiscountPercent] = useState(5);
-  const [discount, setDiscount] = useState();
-  const [vat, setVat] = useState();
+  const [discount, setDiscount] = useState(0);
+  const [vat, setVat] = useState(0);
   const [paid, setPaid] = useState(0);
   const [showRecieveMoney, setShowRecieveMoney] = useState(false);
   const [change, setChange] = useState(0);
@@ -127,7 +127,7 @@ const CreateBill = () => {
           </div>
         </div>
       </div>
-      <div className="w-full h-[calc(100vh-256px)] bg-[#DDDDDD] p-7">
+      <div className="w-full h-[calc(100vh-256px)] bg-[#DDDDDD] p-10">
         <div className="grid grid-cols-3 gap-20">
           <div className="overflow-x-auto bg-white rounded-lg h-full col-span-2">
             <table className="table">
