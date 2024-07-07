@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { FaSearchPlus } from "react-icons/fa";
 import { FiEdit3 } from "react-icons/fi";
+import Select, { components } from "react-select";
+import PropTypes from "prop-types";
+
 import {
   IoMdArrowDropleft,
   IoMdArrowDropright,
@@ -12,16 +15,64 @@ import { TfiEye } from "react-icons/tfi";
 import { TiArrowMaximise } from "react-icons/ti";
 import Modal from "react-modal";
 
+// custom style for react-select field
+const customStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    backgroundColor: "#E4E4E4",
+    padding: "8px",
+    borderRadius: "8px",
+    borderColor: state.isFocused ? "#666" : "#ccc",
+    boxShadow: state.isFocused ? "0 0 0 1px #666" : "none",
+    "&:hover": {
+      borderColor: "#666",
+    },
+  }),
+
+  placeholder: (provided) => ({
+    ...provided,
+    color: "#666",
+    display: "flex",
+    alignItems: "center",
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: "#333",
+    display: "flex",
+    alignItems: "center",
+  }),
+};
+// custom component to add the search icon to left side to the placeholder
+const CustomPlaceholder = (props) => (
+  <components.Placeholder {...props}>
+    <FaSearchPlus style={{ marginRight: "8px" }} />
+    {props.children}
+  </components.Placeholder>
+);
+
+// custom component to add the search icon to left side to the single value
+const CustomSingleValue = (props) => (
+  <components.SingleValue {...props}>
+    <FaSearchPlus style={{ marginRight: "8px" }} />
+    {props.children}
+  </components.SingleValue>
+);
+
 const Inventory = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
   const [medicines, setMedicines] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
 
+  console.log(selectedOption);
+
+  // get medicine data
   useEffect(() => {
-    fetch("/public/data/medicine.json")
+    fetch("/public/data/medicines.json")
       .then((res) => res.json())
       .then((data) => setMedicines(data));
   }, []);
+
   const openModal = () => {
     setIsOpen(true);
   };
@@ -29,6 +80,7 @@ const Inventory = () => {
     setIsOpen(false);
   };
 
+  // get number of page for pagination
   const totalCustomer = medicines.length;
   const itemsPerPage = 11;
   const numberOfPages = Math.ceil(totalCustomer / itemsPerPage);
@@ -42,13 +94,23 @@ const Inventory = () => {
     if (currentPage < pages.length) setCurrentPage(currentPage + 1);
   };
 
+  // create select options for medicine
+  const options = [];
+
+  medicines.forEach((medicine) => {
+    const value = medicine.id;
+    const label = medicine.name;
+    const newOption = { value, label };
+    options.push(newOption);
+  });
   return (
     <div>
+      {/* inventory search area */}
       <div className="bg-white p-5 border-l-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-10">
             <h2 className="text-3xl text-[#000000] font-semibold">Inventory</h2>
-            <label className="input input-md bg-[#E4E4E4] flex items-center gap-2 w-[350px]">
+            <label className="input input-md bg-[#E4E4E4] flex items-center gap-2 w-[350px] text-base">
               <RiSearchLine size={20} className="text-[#7B7B7B]" />
               <input
                 type="text"
@@ -58,20 +120,24 @@ const Inventory = () => {
             </label>
           </div>
           <div className="flex gap-5">
-            <button className="btn bg-white btn-outline text-[#1A1D1F] outline-[#EFEFEF]">
+            <button className="btn bg-white btn-outline text-[#1A1D1F] outline-[#EFEFEF] text-base">
               Export Report
             </button>
-            <button onClick={openModal} className="btn text-white bg-[#004FE8]">
+            <button
+              onClick={openModal}
+              className="btn text-white bg-[#004FE8] text-base"
+            >
               Add New Items
             </button>
           </div>
         </div>
       </div>
+      {/* inventory table */}
       <div className="w-full h-[calc(100vh-188px)] bg-[#DDDDDD] p-7">
         <div className="overflow-x-auto bg-white rounded-lg h-full">
           <table className="table">
             {/* head */}
-            <thead className="h-14 bg-gray-200">
+            <thead className="h-14 bg-gray-50 text-base ">
               <tr>
                 <th>Name</th>
                 <th>Unit</th>
@@ -80,7 +146,7 @@ const Inventory = () => {
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-base">
               {medicines.map((medicine, idx) => (
                 <tr key={idx}>
                   <td>{medicine.name}</td>
@@ -99,18 +165,20 @@ const Inventory = () => {
               ))}
             </tbody>
           </table>
-          <div className="space-x-3 mb-5 flex justify-center items-center">
+
+          {/* Pagination area */}
+          <div className="space-x-3 my-10 flex justify-center items-center">
             <button
               disabled={currentPage === 1}
               onClick={handlePrevious}
-              className="btn btn-sm"
+              className="btn btn-sm text-base"
             >
               <IoMdArrowDropleft /> Previous
             </button>
             {pages.map((page) => (
               <button
                 onClick={() => setCurrentPage(page + 1)}
-                className={`btn btn-sm ${
+                className={`btn btn-sm text-base ${
                   currentPage === page + 1 && "bg-black text-white"
                 }`}
                 key={page}
@@ -121,13 +189,14 @@ const Inventory = () => {
             <button
               disabled={currentPage === pages.length}
               onClick={handleNext}
-              className="btn btn-sm"
+              className="btn btn-sm text-base"
             >
               Next <IoMdArrowDropright />
             </button>
           </div>
         </div>
       </div>
+      {/* modal for add item */}
       <Modal
         isOpen={isOpen}
         onRequestClose={closeModal}
@@ -145,16 +214,19 @@ const Inventory = () => {
               </button>
             </div>
           </div>
-          <div className=" border-b">
-            <label className="input input-md bg-[#E4E4E4] flex items-center gap-2 w-full mb-5">
-              <FaSearchPlus size={20} className="text-black" />
-              <input
-                type="text"
-                className="grow text-black"
-                placeholder="Search and add"
-              />
-            </label>
-          </div>
+
+          <Select
+            onChange={setSelectedOption}
+            options={options}
+            styles={customStyles}
+            placeholder="Search and add"
+            components={{
+              Placeholder: CustomPlaceholder,
+              SingleValue: CustomSingleValue,
+            }}
+          />
+
+          {/* Added item table in modal */}
           <div className="overflow-x-auto bg-white h-[calc(100%-140px)] rounded-lg ">
             <table className="table">
               <tbody>
@@ -305,6 +377,13 @@ const Inventory = () => {
       </Modal>
     </div>
   );
+};
+
+CustomSingleValue.propTypes = {
+  children: PropTypes.any,
+};
+CustomPlaceholder.propTypes = {
+  children: PropTypes.any,
 };
 
 export default Inventory;
