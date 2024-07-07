@@ -3,32 +3,19 @@ import { MdOutlineDeleteForever } from "react-icons/md";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
-const CreateBillRow = ({ medicine, total, setTotal }) => {
+const CreateBillRow = ({ medicine, total, setTotal, setReceiveBtnValid }) => {
   const { name, price, unit } = medicine;
   const [buyUnit, setBuyUnit] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     setTotalPrice(buyUnit * price);
-    // setTotal(total + price);
-  }, [buyUnit, price]);
-
-  const updateUnit = (e) => {
-    const unit = e.target.value;
-
-    console.log(unit);
-    if (unit === "") {
-      setTotal(total - buyUnit * price);
+    if (buyUnit === 0) {
+      setReceiveBtnValid(true);
     } else {
-      console.log(unit);
-      const unitIncrement = unit - 0;
-      console.log(unitIncrement);
-      setTotal(total + unitIncrement * price);
+      setReceiveBtnValid(false);
     }
-
-    setBuyUnit(parseInt(unit));
-    setTotalPrice(buyUnit * price);
-  };
+  }, [buyUnit, price, setReceiveBtnValid]);
 
   const incrementUnit = () => {
     if (buyUnit < unit) {
@@ -58,11 +45,11 @@ const CreateBillRow = ({ medicine, total, setTotal }) => {
           <label className="input input-bordered flex items-center mt-1 max-w-[150px]">
             <input
               value={buyUnit}
-              onChange={updateUnit}
               min="0"
               type="number"
               className="grow"
               placeholder="-"
+              readOnly
             />
             <span className="badge -ml-28">unit</span>
           </label>
@@ -86,7 +73,7 @@ const CreateBillRow = ({ medicine, total, setTotal }) => {
       <td className="">
         <div>
           <button className="btn btn-xs">
-            <MdOutlineDeleteForever size={15} />
+            <MdOutlineDeleteForever size={20} />
           </button>
         </div>
       </td>
@@ -98,6 +85,7 @@ CreateBillRow.propTypes = {
   medicine: PropTypes.object,
   total: PropTypes.number,
   setTotal: PropTypes.func,
+  setReceiveBtnValid: PropTypes.func,
 };
 
 export default CreateBillRow;
