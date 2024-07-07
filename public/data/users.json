@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Alice Johnson",
+    "phone": "01736874665",
+    "access": "Admin"
+  },
+  {
+    "name": "Bob Smith",
+    "phone": "01736874666",
+    "access": "Viewer"
+  },
+  {
+    "name": "Charlie Brown",
+    "phone": "01736874667",
+    "access": "Edit"
+  },
+  {
+    "name": "Diana Prince",
+    "phone": "01736874668",
+    "access": "Viewer"
+  },
+  {
+    "name": "Evan Davis",
+    "phone": "01736874669",
+    "access": "Edit"
+  }
+]

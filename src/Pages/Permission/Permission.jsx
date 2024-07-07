@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiEdit3 } from "react-icons/fi";
 import { RiSearchLine } from "react-icons/ri";
 import Modal from "react-modal";
@@ -6,33 +6,13 @@ import Modal from "react-modal";
 const Permission = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const users = [
-    {
-      name: "Alice Johnson",
-      phone: "01736874665",
-      access: "Admin",
-    },
-    {
-      name: "Bob Smith",
-      phone: "01736874666",
-      access: "Viewer",
-    },
-    {
-      name: "Charlie Brown",
-      phone: "01736874667",
-      access: "Edit",
-    },
-    {
-      name: "Diana Prince",
-      phone: "01736874668",
-      access: "Viewer",
-    },
-    {
-      name: "Evan Davis",
-      phone: "01736874669",
-      access: "Edit",
-    },
-  ];
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("/public/data/users.json")
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, []);
 
   const openModal = () => {
     setIsOpen(true);
