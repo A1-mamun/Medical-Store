@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { FiEdit3 } from "react-icons/fi";
 import { RiSearchLine } from "react-icons/ri";
 import Modal from "react-modal";
 
 const Permission = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const [users, setUsers] = useState([]);
 
+  // get users data
   useEffect(() => {
     fetch("/public/data/users.json")
       .then((res) => res.json())
@@ -21,6 +22,7 @@ const Permission = () => {
     setIsOpen(false);
   };
 
+  // function for changing role
   const handleRole = (role) => {
     console.log(role);
     closeModal();
@@ -28,13 +30,16 @@ const Permission = () => {
 
   return (
     <div className="w-full h-[calc(100vh-100px)] bg-[#DDDDDD] p-7">
+      <Helmet>
+        <title>Medical Store | permissions</title>
+      </Helmet>
       <div className="overflow-x-auto bg-white rounded-lg h-full">
         <div className=" h-20 p-5">
           <div className="flex items-center gap-10">
             <h2 className="text-3xl text-[#000000] font-semibold">
               Permissions
             </h2>
-            <label className="input input-md bg-[#E4E4E4] flex items-center gap-2 w-[350px]">
+            <label className="input input-md bg-[#E4E4E4] flex items-center gap-2 w-[350px] text-base">
               <RiSearchLine size={20} className="text-[#7B7B7B]" />
               <input
                 type="text"
@@ -46,7 +51,7 @@ const Permission = () => {
         </div>
         <table className="table">
           {/* head */}
-          <thead className="h-14 bg-gray-200">
+          <thead className="h-14 bg-gray-200 text-base">
             <tr>
               <th>Name</th>
               <th>Phone Number</th>
@@ -54,7 +59,7 @@ const Permission = () => {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-base">
             {users.map((user, idx) => (
               <tr key={idx}>
                 <td>{user.name}</td>
@@ -81,6 +86,7 @@ const Permission = () => {
           </tbody>
         </table>
       </div>
+      {/* modal for role options */}
       <Modal
         isOpen={isOpen}
         onRequestClose={closeModal}
