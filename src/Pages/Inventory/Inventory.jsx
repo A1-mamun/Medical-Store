@@ -7,7 +7,7 @@ import { TfiEye } from "react-icons/tfi";
 const Inventory = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const customers = [
+  const medicines = [
     { id: 1, name: "Doxycycline 1", unit: 20, price: 7.5, sold: 245 },
     { id: 2, name: "Doxycycline 2", unit: 15, price: 8.0, sold: 246 },
     { id: 3, name: "Doxycycline 3", unit: 22, price: 6.75, sold: 247 },
@@ -59,7 +59,7 @@ const Inventory = () => {
     { id: 49, name: "Doxycycline 49", unit: 18, price: 7.7, sold: 293 },
     { id: 50, name: "Doxycycline 50", unit: 26, price: 8.1, sold: 294 },
   ];
-  const totalCustomer = customers.length;
+  const totalCustomer = medicines.length;
   const itemsPerPage = 11;
   const numberOfPages = Math.ceil(totalCustomer / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()];
@@ -111,12 +111,12 @@ const Inventory = () => {
               </tr>
             </thead>
             <tbody>
-              {customers.map((customer, idx) => (
+              {medicines.map((medicine, idx) => (
                 <tr key={idx}>
-                  <td>{customer.name}</td>
-                  <td>{customer.unit}</td>
-                  <td>{customer.price}</td>
-                  <td>{customer.sold}</td>
+                  <td>{medicine.name}</td>
+                  <td>{medicine.unit}</td>
+                  <td>{medicine.price}</td>
+                  <td>{medicine.sold}</td>
                   <td className="flex gap-3">
                     <button className="btn btn-xs">
                       <TfiEye size={15} />

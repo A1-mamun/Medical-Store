@@ -12,7 +12,7 @@ const DashboardNavbar = () => {
       {/* Home */}
       <li className="bg-gray-50">
         <NavLink
-          to="dashboard"
+          to="/"
           className={({ isActive }) =>
             isActive
               ? "text-white font-semibold bg-[#004FE8] rounded-md flex items-center p-2 space-x-3 gap-3"
