@@ -11,14 +11,14 @@ const DashboardLayoute = () => {
         <div className=" flex-1 w-full h-20 border-l-2">
           <div className="flex items-center justify-between py-5 px-10">
             <div>
-              <label className="input input-sm bg-[#F4F4F4] flex items-center gap-2">
+              <label className="input input-md text-base bg-[#F4F4F4] flex items-center gap-2">
                 <RiSearchLine size={20} className="text-[#9A9FA5]" />
                 <input
                   type="text"
                   className="grow"
                   placeholder="Search or type a command"
                 />
-                <button className="btn btn-xs bg-white">⌘F</button>
+                <button className="btn btn-xs bg-white text-base">⌘F</button>
               </label>
             </div>
             <div className="flex items-center gap-10">

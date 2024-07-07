@@ -102,7 +102,7 @@ const DashboardNavbar = () => {
           <h2 className="text-center text-2xl font-bold">Medical Store</h2>
         </div>
         <div className="divide-y dark:divide-gray-300">
-          <ul className="pt-2 pb-4 space-y-2 text-sm">{navLinks}</ul>
+          <ul className="pt-2 pb-4 space-y-2 text-base">{navLinks}</ul>
         </div>
       </div>
     </div>
