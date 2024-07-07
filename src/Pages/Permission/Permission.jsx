@@ -31,7 +31,7 @@ const Permission = () => {
   return (
     <div className="w-full h-[calc(100vh-100px)] bg-[#DDDDDD] p-7">
       <Helmet>
-        <title>Medical Store | permissions</title>
+        <title>Medical Store | Permissions</title>
       </Helmet>
       <div className="overflow-x-auto bg-white rounded-lg h-full">
         <div className=" h-20 p-5">

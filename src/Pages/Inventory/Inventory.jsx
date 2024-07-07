@@ -14,6 +14,7 @@ import { RiSearchLine } from "react-icons/ri";
 import { TfiEye } from "react-icons/tfi";
 import { TiArrowMaximise } from "react-icons/ti";
 import Modal from "react-modal";
+import { Helmet } from "react-helmet-async";
 
 // custom style for react-select field
 const customStyles = {
@@ -105,6 +106,10 @@ const Inventory = () => {
   });
   return (
     <div>
+      {/* title */}
+      <Helmet>
+        <title>Medical Store | Inventory</title>
+      </Helmet>
       {/* inventory search area */}
       <div className="bg-white p-5 border-l-2">
         <div className="flex items-center justify-between">

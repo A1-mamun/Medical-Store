@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { FiEdit3, FiPrinter } from "react-icons/fi";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 import { RiSearchLine } from "react-icons/ri";
@@ -31,6 +32,9 @@ const Billing = () => {
   return (
     // bills table area
     <div className="w-full h-[calc(100vh-100px)] bg-[#DDDDDD] p-7">
+      <Helmet>
+        <title>Medical Store | Billing</title>
+      </Helmet>
       <div className="overflow-x-auto bg-white rounded-lg h-full">
         {/* bill search area */}
         <div className="flex items-center justify-between h-20 p-5">

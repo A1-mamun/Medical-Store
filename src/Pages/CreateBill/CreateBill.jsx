@@ -3,6 +3,7 @@ import { FaSearchPlus } from "react-icons/fa";
 import CreateBillRow from "./CreateBillRow";
 import { useEffect, useState } from "react";
 import { BsArrowLeftCircle } from "react-icons/bs";
+import { Helmet } from "react-helmet-async";
 
 const CreateBill = () => {
   const [total, setTotal] = useState(0);
@@ -82,6 +83,9 @@ const CreateBill = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Medical Store | Create Bill</title>
+      </Helmet>
       <div className="bg-white py-5 px-20 border-l-2">
         <h2 className="text-2xl font-semibold">Create bill</h2>
         <div className="flex items-center justify-between">
