@@ -29,13 +29,13 @@ const Permission = () => {
   };
 
   return (
-    <div className="w-full h-[calc(100vh-100px)] bg-[#DDDDDD] p-7">
+    <div className="w-full h-[calc(100vh+320px)] lg:h-[calc(100vh-88px)] bg-[#DDDDDD] p-3 md:p-5 lg:p-7">
       <Helmet>
         <title>Medical Store | Permissions</title>
       </Helmet>
-      <div className="overflow-x-auto bg-white rounded-lg h-full">
-        <div className=" h-20 p-5">
-          <div className="flex items-center gap-10">
+      <div className="bg-white rounded-lg h-full">
+        <div className="h-36 md:h-20 p-5">
+          <div className="flex flex-col md:flex-row items-center gap-4  md:gap-7 lg:gap-10">
             <h2 className="text-3xl text-[#000000] font-semibold">
               Permissions
             </h2>
@@ -49,43 +49,46 @@ const Permission = () => {
             </label>
           </div>
         </div>
-        <table className="table">
-          {/* head */}
-          <thead className="h-14 bg-gray-200 text-base">
-            <tr>
-              <th>Name</th>
-              <th>Phone Number</th>
-              <th>Access</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody className="text-base">
-            {users.map((user, idx) => (
-              <tr key={idx}>
-                <td>{user.name}</td>
-                <td>{user.phone}</td>
+        <div className="overflow-x-auto bg-white rounded-lg h-[calc(100%-144px)] md:h-[calc(100%-80px)]">
+          <table className="table">
+            {/* head */}
+            <thead className="h-14 bg-gray-200 text-base">
+              <tr>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Access</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody className="text-base">
+              {users.map((user, idx) => (
+                <tr key={idx}>
+                  <td>{user.name}</td>
+                  <td>{user.phone}</td>
 
-                <td>
-                  <button
-                    className={`btn btn-sm text-white
+                  <td>
+                    <button
+                      className={`btn btn-sm text-white
                     ${user.access === "Admin" && "bg-[#004FE8]"}
                     ${user.access === "Edit" && "bg-[#9747FF]"}
                     ${user.access === "Viewer" && "bg-[#3EAA18]"}`}
-                  >
-                    {user.access}
-                  </button>
-                </td>
+                    >
+                      {user.access}
+                    </button>
+                  </td>
 
-                <td className="flex gap-3">
-                  <button onClick={openModal} className="btn btn-xs">
-                    <FiEdit3 size={15} />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                  <td className="flex gap-3">
+                    <button onClick={openModal} className="btn btn-xs">
+                      <FiEdit3 size={15} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
+
       {/* modal for role options */}
       <Modal
         isOpen={isOpen}
