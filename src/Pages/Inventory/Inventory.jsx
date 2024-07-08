@@ -139,7 +139,7 @@ const Inventory = () => {
       </div>
 
       {/* inventory table */}
-      <div className="w-full h-[calc(100vh-303px)] md:h-[calc(100vh-248px)] lg:h-[calc(100vh-176px)] bg-[#DDDDDD] p-3 md:p-5 lg:p-7">
+      <div className="w-full h-screen lg:h-[calc(100vh-176px)] bg-[#DDDDDD] p-3 md:p-5 lg:p-7">
         <div className="bg-white rounded-lg h-full">
           <div className="overflow-x-auto bg-white rounded-lg h-[calc(100%-70px)] md:h-[calc(100%-90px)] lg:h-[calc(100%-100px)]">
             <table className="table">
@@ -209,9 +209,9 @@ const Inventory = () => {
       <Modal
         isOpen={isOpen}
         onRequestClose={closeModal}
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border border-gray-400 rounded-xl mt-12 md:mt-0 bg-white"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border border-gray-400 rounded-xl mt-12 md:mt-0 bg-white "
       >
-        <div className="w-[600px] h-[700px] p-5">
+        <div className="w-96 h-[500px] md:w-[600px] md:h-[700px] p-5">
           <div className="flex justify-between items-center mb-9">
             <h3 className="text-xl font-medium">Add new items</h3>
             <div className="flex gap-3">
@@ -273,8 +273,8 @@ const Inventory = () => {
                         placeholder="Per unit price"
                         className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
                       />
-                      <button className="btn btn-sm">
-                        <MdOutlineDeleteForever size={30} />
+                      <button className="btn btn-xs md:btn-sm">
+                        <MdOutlineDeleteForever size={25} />
                       </button>
                     </div>
                   </div>
@@ -293,8 +293,8 @@ const Inventory = () => {
                         placeholder="Per unit price"
                         className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
                       />
-                      <button className="btn btn-sm">
-                        <MdOutlineDeleteForever size={30} />
+                      <button className="btn btn-xs md:btn-sm">
+                        <MdOutlineDeleteForever size={25} />
                       </button>
                     </div>
                   </div>
@@ -313,8 +313,8 @@ const Inventory = () => {
                         placeholder="Per unit price"
                         className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
                       />
-                      <button className="btn btn-sm">
-                        <MdOutlineDeleteForever size={30} />
+                      <button className="btn btn-xs md:btn-sm ">
+                        <MdOutlineDeleteForever size={25} />
                       </button>
                     </div>
                   </div>
@@ -333,8 +333,8 @@ const Inventory = () => {
                         placeholder="Per unit price"
                         className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
                       />
-                      <button className="btn btn-sm">
-                        <MdOutlineDeleteForever size={30} />
+                      <button className="btn btn-xs md:btn-sm">
+                        <MdOutlineDeleteForever size={25} />
                       </button>
                     </div>
                   </div>
@@ -353,8 +353,8 @@ const Inventory = () => {
                         placeholder="Per unit price"
                         className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
                       />
-                      <button className="btn btn-sm">
-                        <MdOutlineDeleteForever size={30} />
+                      <button className="btn btn-xs md:btn-sm">
+                        <MdOutlineDeleteForever size={25} />
                       </button>
                     </div>
                   </div>
@@ -373,8 +373,8 @@ const Inventory = () => {
                         placeholder="Per unit price"
                         className="input input-bordered w-full max-w-xs bg-[#E4E4E4]"
                       />
-                      <button className="btn btn-sm">
-                        <MdOutlineDeleteForever size={30} />
+                      <button className="btn btn-xs md:btn-sm">
+                        <MdOutlineDeleteForever size={25} />
                       </button>
                     </div>
                   </div>

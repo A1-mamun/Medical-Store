@@ -31,7 +31,7 @@ const Billing = () => {
   };
   return (
     // bills table area
-    <div className="w-full h-[calc(100vh-88px)] bg-[#DDDDDD] p-3 md:p-5 lg:p-7">
+    <div className="w-full h-[calc(100vh+320px)] lg:h-[calc(100vh-88px)] bg-[#DDDDDD] p-3 md:p-5 lg:p-7">
       <Helmet>
         <title>Medical Store | Billing</title>
       </Helmet>
@@ -52,7 +52,8 @@ const Billing = () => {
             Export Report
           </button>
         </div>
-        <div className="overflow-x-auto bg-white rounded-lg md:h-[calc(100%-250px)] lg:h-[calc(100%-180px)]">
+
+        <div className="overflow-x-auto bg-white rounded-lg h-[calc(100%-262px)] md:h-[calc(100%-250px)] lg:h-[calc(100%-180px)]">
           {/* bill search area */}
           <table className="table">
             {/* head */}
