@@ -112,8 +112,8 @@ const Inventory = () => {
       </Helmet>
       {/* inventory search area */}
       <div className="bg-white p-5 border-l-2">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-5">
+          <div className="flex flex-col md:flex-row items-center gap-5 lg:gap-10">
             <h2 className="text-3xl text-[#000000] font-semibold">Inventory</h2>
             <label className="input input-md bg-[#E4E4E4] flex items-center gap-2 w-[350px] text-base">
               <RiSearchLine size={20} className="text-[#7B7B7B]" />
@@ -138,11 +138,11 @@ const Inventory = () => {
         </div>
       </div>
       {/* inventory table */}
-      <div className="w-full h-[calc(100vh-188px)] bg-[#DDDDDD] p-7">
+      <div className="w-full h-[calc(100vh-188px)] bg-[#DDDDDD] p-3 md:p-5 lg:p-7">
         <div className="overflow-x-auto bg-white rounded-lg h-full">
           <table className="table">
             {/* head */}
-            <thead className="h-14 bg-gray-50 text-base ">
+            <thead className="h-14 bg-gray-50 text-sm md:text-base ">
               <tr>
                 <th>Name</th>
                 <th>Unit</th>
@@ -151,7 +151,7 @@ const Inventory = () => {
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody className="text-base">
+            <tbody className="text-sm md:text-base">
               {medicines.map((medicine, idx) => (
                 <tr key={idx}>
                   <td>{medicine.name}</td>
@@ -172,18 +172,19 @@ const Inventory = () => {
           </table>
 
           {/* Pagination area */}
-          <div className="space-x-3 my-10 flex justify-center items-center">
+          <div className="space-x-3 my-5 md:my-8 lg:my-10 flex justify-center items-center">
             <button
               disabled={currentPage === 1}
               onClick={handlePrevious}
-              className="btn btn-sm text-base"
+              className="btn btn-sm text-sm md:text-base"
             >
-              <IoMdArrowDropleft /> Previous
+              <IoMdArrowDropleft />{" "}
+              <span className="hidden md:block">Previous</span>
             </button>
             {pages.map((page) => (
               <button
                 onClick={() => setCurrentPage(page + 1)}
-                className={`btn btn-sm text-base ${
+                className={`btn btn-sm text-sm md:text-base ${
                   currentPage === page + 1 && "bg-black text-white"
                 }`}
                 key={page}
@@ -194,9 +195,10 @@ const Inventory = () => {
             <button
               disabled={currentPage === pages.length}
               onClick={handleNext}
-              className="btn btn-sm text-base"
+              className="btn btn-sm text-sm md:text-base"
             >
-              Next <IoMdArrowDropright />
+              <span className="hidden md:block">Next</span>
+              <IoMdArrowDropright />
             </button>
           </div>
         </div>

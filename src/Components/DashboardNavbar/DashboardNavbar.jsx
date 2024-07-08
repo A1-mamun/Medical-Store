@@ -5,8 +5,13 @@ import bill from "../../assets/icon/bill.png";
 import createBill from "../../assets/icon/createBill.png";
 import permission from "../../assets/icon/permission.png";
 import report from "../../assets/icon/report.png";
+import { useState } from "react";
+import { MdClose } from "react-icons/md";
+import { AiOutlineMenu } from "react-icons/ai";
 
 const DashboardNavbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const navLinks = (
     <>
       {/* Home */}
@@ -19,12 +24,7 @@ const DashboardNavbar = () => {
               : " flex items-center p-2 space-x-3 rounded-md gap-3"
           }
         >
-          <img
-            src={dashboard}
-            style={{ fill: "#000" }}
-            className=" w-6 h-6 "
-            alt="icon"
-          />
+          <img src={dashboard} className=" w-5 h-5 lg:w-6 lg:h-6" alt="icon" />
           Dashboard
         </NavLink>
       </li>
@@ -37,7 +37,7 @@ const DashboardNavbar = () => {
               : " flex items-center p-2 space-x-3 rounded-md gap-3"
           }
         >
-          <img src={inventory} className=" w-6 h-6" alt="icon" />
+          <img src={inventory} className="  w-5 h-5 lg:w-6 lg:h-6" alt="icon" />
           Inventory
         </NavLink>
       </li>
@@ -50,7 +50,7 @@ const DashboardNavbar = () => {
               : " flex items-center p-2 space-x-3 rounded-md gap-3"
           }
         >
-          <img src={bill} className="text-black w-6 h-6" alt="icon" />
+          <img src={bill} className=" w-5 h-5 lg:w-6 lg:h-6" alt="icon" />
           Billing
         </NavLink>
       </li>
@@ -63,7 +63,11 @@ const DashboardNavbar = () => {
               : " flex items-center p-2 space-x-3 rounded-md gap-3"
           }
         >
-          <img src={createBill} className="text-black w-6 h-6 " alt="icon" />
+          <img
+            src={createBill}
+            className=" w-5 h-5 lg:w-6 lg:h-6 "
+            alt="icon"
+          />
           Create Billing
         </NavLink>
       </li>
@@ -76,7 +80,7 @@ const DashboardNavbar = () => {
               : " flex items-center p-2 space-x-3 rounded-md gap-3"
           }
         >
-          <img src={permission} className="text-black w-6 h-6" alt="icon" />
+          <img src={permission} className=" w-5 h-5 lg:w-6 lg:h-6" alt="icon" />
           Permissions
         </NavLink>
       </li>
@@ -89,20 +93,43 @@ const DashboardNavbar = () => {
               : " flex items-center p-2 space-x-3 rounded-md gap-3"
           }
         >
-          <img src={report} className="text-black w-6 h-6" alt="icon" />
+          <img src={report} className=" w-5 h-5 lg:w-6 lg:h-6" alt="icon" />
           Reporting
         </NavLink>
       </li>
     </>
   );
   return (
-    <div className="flex ">
-      <div className="lg:sticky lg:top-0 min-h-screen p-3 space-y-2 w-60  text-gray-800">
-        <div className="">
-          <h2 className="text-center text-2xl font-bold">Medical Store</h2>
+    <div>
+      <div className="lg:hidden absolute z-10">
+        <div className="relative top-10 left-1 btn btn-xs">
+          <AiOutlineMenu onClick={() => setIsOpen(!isOpen)} />
         </div>
-        <div className="divide-y dark:divide-gray-300">
-          <ul className="pt-2 pb-4 space-y-2 text-base">{navLinks}</ul>
+
+        <div
+          className={`relative h-full transition-transform duration-300 transform ease-in-out ${
+            isOpen ? "translate-x-0" : "-translate-x-full -left-24 "
+          }`}
+        >
+          <div className="min-h-screen p-3 space-y-2 w-60  text-gray-800 bg-white">
+            <div className="flex items-center gap-4">
+              <MdClose size={20} onClick={() => setIsOpen(!isOpen)} />
+              <h2 className="text-center text-2xl font-bold">Medical Store</h2>
+            </div>
+            <div>
+              <ul className="pt-2 pb-4 space-y-2 text-base">{navLinks}</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="hidden lg:block ">
+        <div className="lg:sticky lg:top-0 min-h-screen p-3 space-y-2 w-60  text-gray-800 bg-white">
+          <div className="">
+            <h2 className="text-center text-2xl font-bold">Medical Store</h2>
+          </div>
+          <div>
+            <ul className="pt-2 pb-4 space-y-2 text-base">{navLinks}</ul>
+          </div>
         </div>
       </div>
     </div>
