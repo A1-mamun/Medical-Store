@@ -13,8 +13,8 @@ const customStyles = {
   control: (provided, state) => ({
     ...provided,
     backgroundColor: "#E4E4E4",
-    padding: "8px",
-    borderRadius: "8px",
+    padding: "5px",
+    borderRadius: "5px",
     borderColor: state.isFocused ? "#666" : "#ccc",
     boxShadow: state.isFocused ? "0 0 0 1px #666" : "none",
     "&:hover": {
@@ -57,20 +57,23 @@ const CreateBill = () => {
   const [discountPercent, setDiscountPercent] = useState(5);
   const [discount, setDiscount] = useState(0);
   const [vat, setVat] = useState(0);
-  const [paid, setPaid] = useState(0);
+  const [paidAmount, setPaidAmount] = useState(0);
   const [showReceiveMoney, setShowReceiveMoney] = useState(false);
-  const [change, setChange] = useState(0);
+  const [changeAmount, setChangeAmount] = useState(0);
   const [phone, setPhone] = useState("");
   const [receiveBtnValid, setReceiveBtnValid] = useState(true);
   const [selectedOption, setSelectedOption] = useState(null);
   const [medicines, setMedicines] = useState([]);
+  const [isValidPaid, setIsValidPaid] = useState(false);
 
   useEffect(() => {
     setDiscount((discountPercent / 100) * total);
     setVat(0.05 * total);
     setGrandTotal(total - discount + vat);
-    setChange(paid - grandTotal);
-  }, [total, discountPercent, vat, discount, paid, grandTotal]);
+    setChangeAmount(paidAmount - grandTotal);
+    if (paidAmount < grandTotal) setIsValidPaid(false);
+    else setIsValidPaid(true);
+  }, [total, discountPercent, vat, discount, paidAmount, grandTotal]);
 
   // get medicine data
   useEffect(() => {
@@ -83,7 +86,7 @@ const CreateBill = () => {
     setDiscountPercent(e.target.value);
   };
   const handlePaid = (e) => {
-    setPaid(e.target.value);
+    setPaidAmount(e.target.value);
   };
 
   const handlePhone = (e) => {
@@ -92,7 +95,6 @@ const CreateBill = () => {
 
   // create select options for medicine
   const options = [];
-
   medicines.forEach((medicine) => {
     const value = medicine.id;
     const label = medicine.name;
@@ -111,16 +113,18 @@ const CreateBill = () => {
     }
   };
   return (
-    <div>
+    <div className="h-[calc(100vh-88px)]">
       <Helmet>
         <title>Medical Store | Create Bill</title>
       </Helmet>
-      <div className="bg-white py-5 px-20 border-l-2">
+      <div className="bg-white py-5 px-10 border-l-2 md:h-64 lg:h-40 ">
         <h2 className="text-2xl font-semibold">Create bill</h2>
-        <div className="flex items-center justify-between">
-          <div className=" w-[350px]">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+          <div className="  lg:w-[300px]">
             <div className="label">
-              <span className="label-text text-base">Add Medicine</span>
+              <span className="label-text text-sm md:text-base">
+                Add Medicine
+              </span>
             </div>
             <Select
               onChange={setSelectedOption}
@@ -133,43 +137,48 @@ const CreateBill = () => {
               }}
             />
           </div>
-          <div className="flex gap-5">
-            <label className="form-control w-full max-w-xs text-base">
+          <div className="flex flex-col md:flex-row gap-5">
+            <label className="form-control w-full lg:max-w-xs text-sm md:text-base">
               <div className="label">
-                <span className="label-text text-base">Enter Phone number</span>
+                <span className="label-text text-sm md:text-base">
+                  Enter Phone number
+                </span>
               </div>
               <input
                 type="text"
                 placeholder="01790-200451"
-                className="input bg-[#E4E4E4]  w-full max-w-xs text-black"
+                className="input bg-[#E4E4E4]  text-black"
                 maxLength={11}
                 onChange={handlePhone}
               />
             </label>
-            <label className="form-control w-full max-w-xs">
+            <label className="form-control w-full lg:max-w-xs">
               <div className="label">
-                <span className="label-text text-base">Discount</span>
+                <span className="label-text text-sm md:text-base">
+                  Discount
+                </span>
               </div>
-              <label className="input bg-[#E4E4E4] flex items-center gap-2 text-base">
+              <label className="input bg-[#E4E4E4] flex items-center gap-2 text-sm md:text-base">
                 <input
                   value={discountPercent}
                   onChange={handleDiscount}
                   type="text"
                   className="grow text-black"
-                  // placeholder="5%"
                 />
-                <span className="btn btn-xs text-base mr-4">auto set</span>
+                <span className="btn btn-xs text-sm md:text-base mr-4">
+                  auto set
+                </span>
               </label>
             </label>
           </div>
         </div>
       </div>
-      <div className="w-full h-[calc(100vh-266px)] bg-[#DDDDDD] p-10">
-        <div className="grid grid-cols-3 gap-20">
-          <div className="overflow-x-auto bg-white rounded-lg h-full col-span-2">
+      <div className="w-full h-screen lg:h-[calc(100%-160px)] bg-[#DDDDDD] p-3 md:p-5 lg:p-7">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5 lg:gap-10 h-full">
+          <div className="overflow-x-auto bg-white rounded-lg h-[calc(100%-10px)] md:col-span-2">
             <table className="table">
-              <tbody className="text-base">
-                {medicines.slice(0, 3).map((medicine, idx) => (
+              <tbody className="text-sm md:text-base">
+                {medicines.slice(0, 10).map((medicine, idx) => (
                   <CreateBillRow
                     key={idx}
                     medicine={medicine}
@@ -185,7 +194,7 @@ const CreateBill = () => {
           <div
             className={`${
               showReceiveMoney && "hidden"
-            } bg-white rounded-lg col-span-1 py-7 px-10`}
+            } bg-white rounded-lg col-span-1 py-7 px-10 md:h-[calc(100%-10px)]`}
           >
             <h2 className="text-2xl font-semibold ">Total Summery</h2>
             <div className="space-y-5 mt-8 font-medium">
@@ -217,7 +226,7 @@ const CreateBill = () => {
           <div
             className={`${
               !showReceiveMoney && "hidden"
-            } bg-white rounded-lg col-span-1 py-7 px-10`}
+            } bg-white rounded-lg md:col-span-1 py-7 md:px-5 lg:px-10`}
           >
             <div className="flex gap-2 items-center">
               <button
@@ -244,13 +253,18 @@ const CreateBill = () => {
                   className="grow"
                   placeholder="-"
                 />
-                <span className="badge text-base -ml-28">Paid amount</span>
+                <span className="badge text-base -ml-28 md:hidden">
+                  Paid amount
+                </span>
               </label>
-              <div className="flex items-center justify-between text-[#004FE8]">
+              <div className=" text-[#004FE8]">
                 <h4 className="text-xl font-bold ">Amount return</h4>
-                <p className="text-3xl font-bold">{change.toFixed(2)}</p>
+                <p className="text-3xl font-bold">{changeAmount.toFixed(2)}</p>
               </div>
-              <button className="btn btn-block text-base bg-[#004FE8] text-white mt-10">
+              <button
+                disabled={!isValidPaid}
+                className="btn btn-block text-base bg-[#004FE8] text-white mt-10"
+              >
                 Save and Print
               </button>
             </div>
