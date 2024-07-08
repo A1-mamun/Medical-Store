@@ -111,7 +111,7 @@ const Inventory = () => {
         <title>Medical Store | Inventory</title>
       </Helmet>
       {/* inventory search area */}
-      <div className="bg-white p-5 border-l-2">
+      <div className="bg-white p-5 border-l-2 h-[215px] md:h-[160px]  lg:h-[88px] border ">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-5">
           <div className="flex flex-col md:flex-row items-center gap-5 lg:gap-10">
             <h2 className="text-3xl text-[#000000] font-semibold">Inventory</h2>
@@ -137,40 +137,42 @@ const Inventory = () => {
           </div>
         </div>
       </div>
-      {/* inventory table */}
-      <div className="w-full h-[calc(100vh-188px)] bg-[#DDDDDD] p-3 md:p-5 lg:p-7">
-        <div className="overflow-x-auto bg-white rounded-lg h-full">
-          <table className="table">
-            {/* head */}
-            <thead className="h-14 bg-gray-50 text-sm md:text-base ">
-              <tr>
-                <th>Name</th>
-                <th>Unit</th>
-                <th>Per unit Price</th>
-                <th>Sold This Month</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody className="text-sm md:text-base">
-              {medicines.map((medicine, idx) => (
-                <tr key={idx}>
-                  <td>{medicine.name}</td>
-                  <td>{medicine.unit}</td>
-                  <td>{medicine.price}</td>
-                  <td>{medicine.sold}</td>
-                  <td className="flex gap-3">
-                    <button className="btn btn-xs">
-                      <TfiEye size={15} />
-                    </button>
-                    <button className="btn btn-xs">
-                      <FiEdit3 size={15} />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
 
+      {/* inventory table */}
+      <div className="w-full h-[calc(100vh-303px)] md:h-[calc(100vh-248px)] lg:h-[calc(100vh-176px)] bg-[#DDDDDD] p-3 md:p-5 lg:p-7">
+        <div className="bg-white rounded-lg h-full">
+          <div className="overflow-x-auto bg-white rounded-lg h-[calc(100%-70px)] md:h-[calc(100%-90px)] lg:h-[calc(100%-100px)]">
+            <table className="table">
+              {/* head */}
+              <thead className="h-14 bg-gray-50 text-sm md:text-base ">
+                <tr>
+                  <th>Name</th>
+                  <th>Unit</th>
+                  <th>Per unit Price</th>
+                  <th>Sold This Month</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody className="text-sm md:text-base">
+                {medicines.map((medicine, idx) => (
+                  <tr key={idx}>
+                    <td>{medicine.name}</td>
+                    <td>{medicine.unit}</td>
+                    <td>{medicine.price}</td>
+                    <td>{medicine.sold}</td>
+                    <td className="flex gap-3">
+                      <button className="btn btn-xs">
+                        <TfiEye size={15} />
+                      </button>
+                      <button className="btn btn-xs">
+                        <FiEdit3 size={15} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           {/* Pagination area */}
           <div className="space-x-3 my-5 md:my-8 lg:my-10 flex justify-center items-center">
             <button

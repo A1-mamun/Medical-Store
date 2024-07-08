@@ -111,7 +111,7 @@ const DashboardNavbar = () => {
             isOpen ? "translate-x-0" : "-translate-x-full -left-24 "
           }`}
         >
-          <div className="min-h-screen p-3 space-y-2 w-60  text-gray-800 bg-white">
+          <div className="min-h-[calc(100vh-25px)] p-3 space-y-2 w-60  text-gray-800 bg-white">
             <div className="flex items-center gap-4">
               <MdClose size={20} onClick={() => setIsOpen(!isOpen)} />
               <h2 className="text-center text-2xl font-bold">Medical Store</h2>
