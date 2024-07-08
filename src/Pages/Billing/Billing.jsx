@@ -31,13 +31,13 @@ const Billing = () => {
   };
   return (
     // bills table area
-    <div className="w-full h-[calc(100vh-65px)] bg-[#DDDDDD] p-3 md:p-5 lg:p-7">
+    <div className="w-full h-[calc(100vh-88px)] bg-[#DDDDDD] p-3 md:p-5 lg:p-7">
       <Helmet>
         <title>Medical Store | Billing</title>
       </Helmet>
-      <div className="bg-white rounded-lg border h-full ">
-        <div className="flex flex-col lg:flex-row items-center justify-between h-48 md:h-20 p-5">
-          <div className="flex flex-col md:flex-row items-center lg:gap-10">
+      <div className="bg-white rounded-lg h-full">
+        <div className="flex flex-col lg:flex-row items-center justify-between h-48 md:h-40 lg:h-20 p-5">
+          <div className="flex flex-col md:flex-row items-center md:gap-8 lg:gap-10">
             <h2 className="text-3xl text-[#000000] font-semibold">Bills</h2>
             <label className="input input-md bg-[#E4E4E4] flex items-center gap-2 w-[330px] text-base">
               <RiSearchLine size={20} className="text-[#7B7B7B]" />
@@ -52,7 +52,7 @@ const Billing = () => {
             Export Report
           </button>
         </div>
-        <div className="overflow-x-auto bg-white rounded-lg h-[calc(100%-270px)]">
+        <div className="overflow-x-auto bg-white rounded-lg md:h-[calc(100%-250px)] lg:h-[calc(100%-180px)]">
           {/* bill search area */}
           <table className="table">
             {/* head */}
