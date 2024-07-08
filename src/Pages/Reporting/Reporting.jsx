@@ -9,7 +9,7 @@ const Reporting = () => {
         <title>Medical Store | Reporting</title>
       </Helmet>
       <div className="w-full h-full flex flex-col items-center justify-center">
-        <h2 className="text-4xl font-bold text-error">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-error">
           Work in Progress . . .
         </h2>
         <Lottie
